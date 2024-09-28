@@ -1,6 +1,6 @@
 # JLLM Wrapper for Python
 
-**The API is back up but await upgrades.**
+> :warning: **Info:** Auto-Registering is faulty at the moment.
 
 What changed:
 
@@ -301,6 +301,30 @@ print("\n") # final newline so AI's output doesn't merge with the debug message 
 
 # Output: Hello! How can I assist you today? If you have any questions or need help with something, feel free to ask.
 ```
+
+6. (Optional) Reusing valid JWTs
+
+Since the process of getting your JWT all the time is tedious and time-consuming, the handler actually stores your JWT and the current timestamp in files called ``TIME:temp`` and ``TOKEN.temp``
+
+To reuse them, add this code instead of your usual login:
+
+```py
+from scripts import get_preexisting_jwt, ...
+
+# try getting jwt from file
+jwt = get_preexisting_jwt(
+    # This path: Using pre-existing account
+)
+
+if jwt is None:
+
+    jwt = await login(
+        email="xxxxxxx@gmail.com",
+        password="xxxxxxxxxx"
+    )
+```
+
+Do note that a JWT is only valid for one hour and this code is not guaranteed to work.
 
 ## Common issues
 

@@ -46,6 +46,8 @@ async def login(email: str, password: str) -> str:
     # logging
     logger.info("On the login page.")
 
+    await br.wait(3)
+
     # fill the email and password fields
     email_field = await br.main_tab.select("input[id='email']")
     await email_field.send_keys(f"{email}")
